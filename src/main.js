@@ -27,7 +27,7 @@ require('@/store/subscriber')
 
 /* Vue configs */
 Vue.config.productionTip = false
-axios.defaults.baseURL = 'http://127.0.0.1:4000/'
+axios.defaults.baseURL = 'https://api.arminmalek.ir/'
 
 axios.defaults.headers.common['Access-Control-Allow-Origin'] = '*';
 
