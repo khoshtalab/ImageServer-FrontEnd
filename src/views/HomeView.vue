@@ -16,8 +16,8 @@
           <div class="col-12" v-if="!verified">
             <div class="alert alert-danger inverse alert-dismissible fade show" role="alert"><i
                 class="icon-thumb-down"></i>
-              <p><b> ایمیل </b> شما تایید نشده است، برای استفاده از برنامه باید اییمیل خود را تایید کنید.
-                <b @click="request_verify()">تایید ایمیل</b>
+              <p @click="request_verify()"><b> ایمیل </b> شما تایید نشده است، برای استفاده از برنامه باید اییمیل خود را تایید کنید.
+                <b >تایید ایمیل</b>
               </p>
 
             </div>
