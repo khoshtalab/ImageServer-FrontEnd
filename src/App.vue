@@ -1,7 +1,7 @@
 <template>
     <div id="app">
         <transition name="slide" mode="out-in">
-            <template v-if="!currentRouteName">
+            <template v-if="!currentRouteName" >
                 <div class="page-wrapper compact-wrapper" id="pageWrapper">
                     <!-- Page Header Start-->
                     <app-header/>
@@ -26,12 +26,12 @@
                 </div>
 
                 <!-- tap on top starts-->
-                <div class="tap-top"><i data-feather="chevrons-up"></i></div>
+                <div class="tap-top" ><i data-feather="chevrons-up"></i></div>
                 <!-- tap on tap ends-->
             </template>
-            <template v-else>
+            <template v-else >
                 <transition name="slide" mode="out-in">
-                    <router-view class="rooter__main__class"/>
+                    <router-view class="rooter__main__class" />
                 </transition>
 
             </template>

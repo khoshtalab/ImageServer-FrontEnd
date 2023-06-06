@@ -4,6 +4,7 @@ import HomeView from '../views/HomeView.vue'
 import store from '@/store'
 import AboutView from "@/views/AboutView";
 import PlansListView from "@/views/Auth/PlansListView";
+import LibraryView from "@/views/Auth/LibraryView";
 
 Vue.use(VueRouter)
 
@@ -23,6 +24,11 @@ const routes = [
     name: 'Plans',
     component: PlansListView,
     meta: {verified: true, title: 'صفحه پلن ها'}
+  },{
+    path: '/library',
+    name: 'Library',
+    component: LibraryView,
+    meta: {verified: true, title: 'صفحه فایل ها'}
   },
   {
     path: '/login',

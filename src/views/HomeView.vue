@@ -25,7 +25,7 @@
 
 
           <template v-if="!user_plan">
-            <div class="col-xl-4 col-md-6 dash-xl-10">
+            <div class="col-xl-12 col-md-12 dash-xl-10">
               <div class="card profile-greeting" style="height: auto">
                 <div class="card-body">
                   <div class="media">
@@ -35,8 +35,12 @@
                           {{ user.fullName }}
                         </h1>
                         <h6>خوش آمدید، داشبورد شما آماده است!</h6>
-                        <a class="btn btn-outline-white_color" href="blog-single.html"><i
-                            class="icon-arrow-left"> </i>خرید اشتراک</a>
+                        <router-link to="plans" tag="a" class="btn btn-outline-white_color">
+                          <i
+                              class="icon-arrow-left"> </i>خرید اشتراک
+
+                        </router-link>
+
                       </div>
                     </div>
                   </div>
@@ -56,7 +60,7 @@
                         </h1>
                         <h6>خوش آمدید، داشبورد شما آماده است!</h6>
                         <h6>پلن فعلی شما: {{ user_plan.SubscriptionPlan.title }}</h6>
-                        <h6>ترافیک پلن:   Mb {{ user_plan.SubscriptionPlan.bandwidthLimit / 1024 | currency }}</h6>
+                        <h6>ترافیک پلن: Mb {{ user_plan.SubscriptionPlan.bandwidthLimit / 1024 | currency }}</h6>
                         <h6>فضای پلن: Mb {{ user_plan.SubscriptionPlan.storageLimit / 1024 | currency }}</h6>
 
                       </div>
@@ -86,7 +90,8 @@
                         <p class="font-theme-light">فضای مصرفی</p>
                         <h5>{{ user.Customer.storageUsed }}</h5>
                         <div class="progress progress-round-primary">
-                          <div class="progress-bar" role="progressbar" :style="{ 'width': percent_stroage + '%' }" aria-valuenow="45"
+                          <div class="progress-bar" role="progressbar" :style="{ 'width': percent_stroage + '%' }"
+                               aria-valuenow="45"
                                aria-valuemin="0" aria-valuemax="100"></div>
                         </div>
                       </div>
@@ -96,7 +101,8 @@
                         <p class="font-theme-light">ترافیک مصرفی</p>
                         <h5>{{ user.Customer.trafficUsed }}</h5>
                         <div class="progress progress-round-secondary">
-                          <div class="progress-bar" role="progressbar" :style="{ 'width': percent_traffic + '%' }" style="width: 65%" aria-valuenow="65"
+                          <div class="progress-bar" role="progressbar" :style="{ 'width': percent_traffic + '%' }"
+                               style="width: 65%" aria-valuenow="65"
                                aria-valuemin="0" aria-valuemax="100"></div>
                         </div>
                       </div>
@@ -107,7 +113,6 @@
                 </div>
               </div>
             </div>
-
 
 
           </template>
@@ -148,11 +153,11 @@ export default {
     }),
     percent_stroage() {
       let vm = this
-      return (vm.user_plan.SubscriptionPlan.storageLimit / 100) * vm.user.Customer.storageUsed
+      return ((vm.user_plan.SubscriptionPlan.storageLimit/1024/1024/1024 / 100) * vm.user.Customer.storageUsed)/10000000
     },
     percent_traffic() {
       let vm = this
-      return (vm.user_plan.SubscriptionPlan.bandwidthLimit / 100) * vm.user.Customer.trafficUsed
+      return ((vm.user_plan.SubscriptionPlan.bandwidthLimit/1024/1024/1024 / 100) * vm.user.Customer.trafficUsed)/10000000
     }
   },
   methods: {

@@ -1,6 +1,6 @@
 <template>
-    <div class="container-fluid p-0">
-        <div class="row m-0">
+    <div class="container-fluid p-0" :key="1313">
+        <div class="row m-0" :key="13131">
             <div class="col-12 p-0">
                 <div class="login-card">
                     <div class="theme-form login-form">

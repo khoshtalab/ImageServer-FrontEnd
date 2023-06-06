@@ -56,10 +56,12 @@ export default {
             }
         },
 
-        logout({commit}) {
-
-            commit('SET_TOKEN', null)
-            commit('SET_USER', null)
+        logout({state}) {
+            state.user = null
+            state.token = null
+            localStorage.removeItem('token')
+            // commit('SET_TOKEN', null)
+            // commit('SET_USER', null)
         },
 
         async register(/*{commit}*/_, credentials) {
