@@ -23,7 +23,8 @@
                     <div class="card-body">
                       <h2 class="mt-1">آپلود فایل</h2>
                       <br>
-                      <input class="form-control" ref="fileupload" type="file" aria-label="file example" @change="onFileChange"/>
+                      <input class="form-control" ref="fileupload" type="file" aria-label="file example"
+                             @change="onFileChange"/>
                       <br>
                       <button class="btn btn-primary" type="submit" @click="uploadFile()" :disabled='disable_button'>
                         آپلود
@@ -92,7 +93,10 @@
                           <p class="mb-1">آیدی:
                             {{ file.id }}
                           </p>
-                          <p></p>
+                          <p> لینک:
+                            {{ getImgUrl(file.fileName) }}
+                          </p>
+                          <button class="btn btn-sm btn-danger" @click="deleteFile(file.id)">حذف فایل</button>
                         </div>
                       </li>
 
@@ -165,7 +169,7 @@ export default {
   },
   methods: {
     getImgUrl(name) {
-      return "http://localhost:4000/img/" + name
+      return "https://api.arminmalek.ir/" + name
     },
     onFileChange(e) {
       let files = e.target.files || e.dataTransfer.files;
@@ -199,6 +203,33 @@ export default {
 
         }
         vm.loading = false
+      })
+
+    },
+    deleteFile(id) {
+      let vm = this
+      vm.$toaster.info("در حال حذف عکس")
+      vm.disable_button = true
+      axios.post('cp/library/remove', {
+        fileID: id
+      }).then((response) => {
+        if (!response.data.ok)
+          vm.$toaster.warning(response.data.msg)
+        else {
+          vm.$toaster.error("عکس مورد نظر با موفقیت حذف شد شد.")
+          vm.getFiles()
+          this.$refs.fileupload.value = null;
+          store.dispatch('auth/attempt', localStorage.getItem('token')).then(() => {
+
+          })
+        }
+        vm.disable_button = false
+      }).catch(function (error) {
+
+        vm.$toaster.error(error.response.data.msg)
+
+        vm.disable_button = false
+
       })
 
     },
